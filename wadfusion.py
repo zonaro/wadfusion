@@ -350,6 +350,15 @@ def add_to_wad_lump_lists():
     if extras_is_kex():
         logs('  Extracting KEX resources from extras.wad')
         WAD_LUMP_LISTS['extras'] += ['colormaps_extras', 'graphics_extras', 'music_extras']
+    # if community wads are missing dependencies, try to extract from alternatives
+    if get_wad_filename('freedoom1') and not doom_is_registered() and not doomu_is_retail():
+        logg('  ERROR: Extracting doom.wad resources from freedoom1.wad as registered or retail doom.wad is not present', error=True)
+        WAD_LUMP_LISTS['freedoom1'] += COMMON_LUMPS + DOOM1_LUMPS
+    if get_wad_filename('freedoom2') and not get_wad_filename('doom2'):
+        logg('  ERROR: Extracting doom2.wad resources from freedoom2.wad as doom2.wad is not present', error=True)
+        WAD_LUMP_LISTS['freedoom2'] += DOOM2_LUMPS
+        if not doom_is_registered() and not doomu_is_retail():
+            WAD_LUMP_LISTS['freedoom2'] += COMMON_LUMPS
 
 def extract_master_levels():
     logs('Processing Master Levels...')
@@ -642,6 +651,12 @@ def extract_iwads():
         if iwad_name == 'id1' and not get_wad_filename('doom2'):
             logg('  ERROR: Skipping id1.wad as doom2.wad is not present', error=True)
             continue
+        if iwad_name == 'id1-res' and not get_wad_filename('id1'):
+            logg('  ERROR: Skipping id1-res.wad as id1.wad is not present', error=True)
+            continue
+        if iwad_name == 'id24res' and not get_wad_filename('id1'):
+            logg('  ERROR: Skipping id24res.wad as id1.wad is not present', error=True)
+            continue
         if iwad_name == 'iddm1' and not get_wad_filename('doom2'):
             logg('  ERROR: Skipping iddm1.wad as doom2.wad is not present', error=True)
             continue
@@ -654,6 +669,47 @@ def extract_iwads():
         if iwad_name == 'doomu' and doom_is_retail():
             logg('  ERROR: Skipping doomu.wad as doom.wad appears to also be the retail version', error=True)
             continue
+        # Community and commercial WAD validations
+        if iwad_name == 'doomzero':
+            if not doom_is_registered() and not doomu_is_retail() and not get_wad_filename('freedoom1'):
+                logg('  ERROR: Skipping doomzero.wad as no base doom.wad or freedoom1.wad is present', error=True)
+                continue
+        if iwad_name == 'freedoom1':
+            if not doom_is_registered() and not doomu_is_retail():
+                logs('  Processing freedoom1.wad as replacement for doom.wad')
+        if iwad_name == 'freedoom2':
+            if not get_wad_filename('doom2'):
+                logs('  Processing freedoom2.wad as replacement for doom2.wad')
+        if iwad_name == 'hell2pay' and not get_wad_filename('doom2') and not get_wad_filename('freedoom2'):
+            logg('  ERROR: Skipping hell2pay.wad as doom2.wad or freedoom2.wad is not present', error=True)
+            continue
+        if iwad_name == 'perdgate' and not get_wad_filename('doom2') and not get_wad_filename('freedoom2'):
+            logg('  ERROR: Skipping perdgate.wad as doom2.wad or freedoom2.wad is not present', error=True)
+            continue
+        if iwad_name == 'neis':
+            if not doom_is_registered() and not doomu_is_retail() and not get_wad_filename('freedoom1'):
+                logg('  ERROR: Skipping neis.wad as doom.wad or freedoom1.wad is not present', error=True)
+                continue
+        if iwad_name == 'tntr' and not get_wad_filename('tnt'):
+            logg('  ERROR: Skipping tntr.wad as tnt.wad is not present', error=True)
+            continue
+        if iwad_name == 'tnt2_beta6' and not get_wad_filename('tnt'):
+            logg('  ERROR: Skipping tnt2_beta6.wad as tnt.wad is not present', error=True)
+            continue
+        if iwad_name == 'pl2' and not get_wad_filename('plutonia'):
+            logg('  ERROR: Skipping pl2.wad as plutonia.wad is not present', error=True)
+            continue
+        if iwad_name == 'prcp' and not get_wad_filename('plutonia'):
+            logg('  ERROR: Skipping prcp.wad as plutonia.wad is not present', error=True)
+            continue
+        if iwad_name == 'jptr_v40':
+            if not doom_is_registered() and not doomu_is_retail() and not get_wad_filename('freedoom1'):
+                logg('  ERROR: Skipping jptr_v40.wad as doom.wad or freedoom1.wad is not present', error=True)
+                continue
+        if iwad_name == 'doom3do':
+            if not doom_is_registered() and not doomu_is_retail() and not get_wad_filename('freedoom1'):
+                logg('  ERROR: Skipping doom3do.wad as doom.wad or freedoom1.wad is not present', error=True)
+                continue
         logs('Processing WAD %s...' % iwad_name)
         extract_lumps(iwad_name)
         prefix = WAD_MAP_PREFIXES.get(iwad_name, None)
@@ -863,6 +919,29 @@ def get_eps(wads_found):
             eps += ['The Vulcan Abyss', 'Counterfeit Eden']
         elif wadname == 'iddm1' and 'doom2' in wads_found:
             eps += ['id Deathmatch Pack #1']
+        # Community and commercial WADs
+        elif wadname == 'doomzero':
+            eps += ['DOOM Zero']
+        elif wadname == 'freedoom1':
+            eps += ['Outpost Outbreak', 'Military Labs', 'Event Horizon', 'Double Impact']
+        elif wadname == 'freedoom2':
+            eps += ['Destination: Earth']
+        elif wadname == 'hell2pay' and ('doom2' in wads_found or 'freedoom2' in wads_found):
+            eps += ['Hell To Pay']
+        elif wadname == 'perdgate' and ('doom2' in wads_found or 'freedoom2' in wads_found):
+            eps += ['Perdition\'s Gate']
+        elif wadname == 'neis' and (doom_is_registered() or doomu_is_retail() or 'freedoom1' in wads_found):
+            eps += ['1994 Ways to Die', 'The Depths of Doom', 'Woe', 'Blood Stained']
+        elif wadname == 'tntr' and 'tnt' in wads_found:
+            eps += ['TNT: Revilution']
+        elif wadname == 'tnt2_beta6' and 'tnt' in wads_found:
+            eps += ['TNT 2']
+        elif wadname == 'pl2' and 'plutonia' in wads_found:
+            eps += ['Plutonia 2']
+        elif wadname == 'prcp' and 'plutonia' in wads_found:
+            eps += ['Plutonia Revisited']
+        elif wadname == 'jptr_v40' and (doom_is_registered() or doomu_is_retail() or 'freedoom1' in wads_found):
+            eps += ['Massacre on Callisto', 'Killing Fields of Io', 'Hell\'s Gate - The Red Spot of Jupiter']
     return eps
 
 def pk3_compress():

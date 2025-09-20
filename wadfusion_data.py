@@ -206,10 +206,12 @@ RES_FILES = [
 WADS = [
     'doom', 'doomu', 'doom2', 'tnt', 'plutonia',
     'sigil', 'sigil_shreds', 'sigil2', 'sigil2_mp3',
-    'id1', 'iddm1', 'extras',
+    'id1', 'id1-res', 'id24res', 'iddm1', 'extras',
     'doomunity', 'doom2unity', 'tntunity', 'plutoniaunity',
     'doomkex', 'doom2kex', 'tntkex', 'plutoniakex',
-    'masterlevels', 'nerve'
+    'masterlevels', 'nerve', 'doomzero', 'freedoom1', 'freedoom2',
+    'hell2pay', 'perdgate', 'neis', 'tntr', 'tnt2_beta6',
+    'pl2', 'prcp', 'jptr_v40', 'doom3do'
 ]
 
 # wads to search for and report if found
@@ -225,10 +227,13 @@ REPORT_WADS = [
     'cpu', 'device_1', 'dmz', 'cdk_fury', 'e_inside',
     'hive', 'twm01', 'mines', 'anomaly', 'farside',
     'trouble', 'dante25', 'achron22', 'udtwid', 'caball',
-    'nerve', 'id1', 'iddm1', 'tnt', 'plutonia',
+    'nerve', 'id1', 'id1-res', 'id24res', 'iddm1', 'tnt', 'plutonia',
     'sewers', 'betray', 'e1m4b', 'e1m8b', 'extras',
     'doomunity', 'doom2unity', 'tntunity', 'plutoniaunity',
-    'doomkex', 'doom2kex', 'tntkex', 'plutoniakex'
+    'doomkex', 'doom2kex', 'tntkex', 'plutoniakex',
+    'doomzero', 'freedoom1', 'freedoom2', 'hell2pay',
+    'perdgate', 'neis', 'tntr', 'tnt2_beta6', 'pl2',
+    'prcp', 'jptr_v40', 'doom3do'
 ]
 
 # lists of lumps common to doom 1+2
@@ -264,6 +269,8 @@ WAD_LUMP_LISTS = {
     'sigil2': ['graphics_sigil2', 'music_sigil2', 'patches_sigil2', 'data_sigil2', 'flats_sigil2'],
     'sigil2_mp3': ['music_sigil2_shreds'],
     'id1': ID1_LUMPS,
+    'id1-res': ['data_id1-res'],
+    'id24res': ['graphics_id24res'],
     'iddm1': [],
     # widescreen assets from unity and kex ports
     'doomunity': ['graphics_doom1_unity'],
@@ -276,7 +283,20 @@ WAD_LUMP_LISTS = {
     'plutoniakex': ['graphics_plutonia_unity', 'graphics_plutonia_kex'],
     'nerve': [],
     # extras.wad assets from unity and kex ports
-    'extras': ['data_extras', 'sounds_extras']
+    'extras': ['data_extras', 'sounds_extras'],
+    # community and commercial wads
+    'doomzero': ['graphics_doomzero', 'patches_doomzero', 'flats_doomzero', 'music_doomzero', 'sounds_doomzero', 'sprites_doomzero'],
+    'freedoom1': ['graphics_freedoom1', 'patches_freedoom1', 'flats_freedoom1', 'music_freedoom1'],
+    'freedoom2': ['graphics_freedoom2', 'patches_freedoom2', 'flats_freedoom2', 'music_freedoom2'],
+    'hell2pay': ['graphics_hell2pay', 'patches_hell2pay', 'flats_hell2pay', 'music_hell2pay'],
+    'perdgate': ['graphics_perdgate', 'music_perdgate'],
+    'neis': ['graphics_neis', 'patches_neis', 'flats_neis'],
+    'tntr': ['graphics_tntr', 'patches_tntr', 'flats_tntr', 'music_tntr'],
+    'tnt2_beta6': ['graphics_tnt2', 'patches_tnt2', 'flats_tnt2', 'music_tnt2'],
+    'pl2': ['graphics_pl2', 'patches_pl2', 'flats_pl2', 'music_pl2'],
+    'prcp': ['graphics_prcp', 'patches_prcp', 'flats_prcp', 'music_prcp'],
+    'jptr_v40': [],
+    'doom3do': ['music_doom3do']
 }
 
 # prefixes for filenames of maps extracted from IWADs
@@ -292,7 +312,19 @@ WAD_MAP_PREFIXES = {
     'sigil': '',
     'sigil2': '',
     'id1': 'LR_',
-    'iddm1': 'DM_'
+    'iddm1': 'DM_',
+    # community and commercial wads
+    'doomzero': 'DZ_',
+    'freedoom1': 'FD1_',
+    'freedoom2': 'FD2_',
+    'hell2pay': 'HP_',
+    'perdgate': 'PG_',
+    'neis': 'NS_',
+    'tntr': 'TR_',
+    'tnt2_beta6': 'T2_',
+    'pl2': 'P2_',
+    'prcp': 'PRCP_',
+    'jptr_v40': 'JPTR_'
 }
 
 MASTER_LEVELS_ORDER = [

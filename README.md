@@ -1,133 +1,288 @@
-# WadFusion — simple IWAD merge utility
+# WadFusion — Complete DOOM WAD Merger
 
-WadFusion merges your provided DOOM, DOOM II, and Final DOOM data into a single IPK3 file that can be played in [GZDoom](https://zdoom.org/index), with each game as its own entry in the episode list. This makes it very convenient to play all of classic DOOM's official releases without re-launching the game with different settings.
+WadFusion is an advanced DOOM WAD merge utility that combines official DOOM releases with community and commercial add-ons into a single IPK3 file for [GZDoom](https://zdoom.org/index). This enhanced version merges the best features of the original WadFusion with extensive WAD support from WadSmoosh-Plus, providing the most comprehensive DOOM collection tool available.
 
-It's fine if you don't have all of the DOOM games, e.g. you have DOOM II but not Final DOOM—WadFusion will package up everything it can find.
+**Key Features:**
+- Supports 30+ official, community, and commercial WADs
+- Creates a single IPK3 file playable in GZDoom 4.14.1+
+- Automatic dependency resolution and fallback systems
+- Support for Unity/KEX port widescreen assets
+- Master Levels with expanded "Rejects" content
+- Multiple soundtrack variants (SIGIL, IDKFA)
 
-If you just bought these games from [GOG](https://www.gog.com/en/game/doom_doom_ii), or [Steam](https://store.steampowered.com/app/2280/), etc., and you aren't familiar with GZDoom and DOOM modding, see the [**Absolute Beginner's Guide**](#absolute-beginners-guide) section below.
+If you're new to DOOM modding, see the [**Quick Start Guide**](#quick-start-guide) below.
 
-### Note: WadFusion requires GZDoom v4.14.1 or newer, it will not work with other engines.
+## What's New in This Version
 
-## Integrated Extras
+This version significantly expands WAD support by integrating capabilities from WadSmoosh-Plus:
 
-This version of WadFusion includes integrated extras from the community:
+### Official Content Support
+- All original DOOM, DOOM II, and Final DOOM releases
+- Master Levels for DOOM II (with optional "Rejects" expansion)
+- SIGIL & SIGIL II with multiple soundtrack options
+- Legacy of Rust (KEX re-release content)
+- Unity/KEX port exclusive content and widescreen assets
 
-### Wadfusion-Xtras
-An addon that adds console maps and the entirety of Doom 64 for Doom 2 (with permission). This integration includes:
-- Enhanced graphics and textures
-- Additional maps and episodes  
-- Doom 64-style monsters and weapons
-- Custom UI elements and status bars
+### Community & Commercial Add-ons
+- **Freedoom** - Open-source DOOM alternative
+- **DOOM Zero** - Prequel campaign by Christopher Golden
+- **Hell To Pay & Perdition's Gate** - Classic commercial releases
+- **TNT: Revilution & Plutonia 2** - Fan-made sequels
+- **No End in Sight** - Award-winning episode replacement
+- **The Lost Episodes of DOOM** - Rare commercial add-on
+- And many more (see complete list below)
 
-### WadFusion-Unofficial-Xtras  
-An addon for unofficial campaigns including:
-- The Lost Episodes of Doom
-- Perditions Gate
-- Hell to Pay
-- Freedoom Phase 1 and 2
-- TNT Revolution
-- Plutonia 2
-- Doom Zero
+## Quick Start Guide
 
-All extras are located in the `res/extras/` directory and are automatically integrated into the build process.
+1. **Download WadFusion** from the [releases page](https://github.com/Owlet7/wadfusion/releases)
+2. **Extract** to a folder on your computer
+3. **Copy your WAD files** to the `source_wads/` subfolder
+4. **Run WadFusion** (`wadfusion.exe` on Windows, `wadfusion.py` on macOS/Linux)
+5. **Confirm** when prompted - WadFusion will show you what episodes it can create
+6. **Get GZDoom** from [zdoom.org](https://zdoom.org/downloads) if you don't have it
+7. **Copy the generated `doom_fusion.ipk3`** to your GZDoom folder
+8. **Launch GZDoom** and select "DOOM Fusion" as your IWAD
 
-## Usage
+**That's it!** All your DOOM content will be available as separate episodes in the main menu.
 
-Simply copy all of your WADs into the `source_wads` subfolder, then run WadFusion. A log will appear showing progress and any errors that arise. A new file called `doom_fusion.ipk3` will be created, with all the game content in it. It should be selectable in GZDoom as "DOOM Fusion".
+## Requirements
 
-Also included is a file called `doom_fusion_widescreen_gfx.pk3`, which adds super-ultra-widescreen assets courtesy of the [Ultra-Widerpix854 project](https://www.doomworld.com/forum/topic/148537). DOOM Fusion will load it automatically if it's placed in the same directory as the IPK3. GZDoom's own widescreen assets are disabled in Fusion. (It's worth noting that the full Ultra-Widerpix854 project has some extra features not included with WadFusion, such as alternate versions for some graphics, extended sky textures, and support for other DOOM-based games.)
+- **GZDoom 4.14.1 or newer** (will not work with other engines)
+- At least one supported IWAD (doom.wad, doom2.wad, etc.)
+- Python 3.7+ (for non-Windows builds)
 
-## Options
+## Usage Options
 
-WadFusion can be launched with the following command line arguments:
+WadFusion supports several command-line options for advanced users:
 
-- `-h`, `--help` — Show the help message.
-- `-v`, `--verbose` — Print out all the logged information.
-- `-p`, `--patch` — Patch an existing IPK3 without extracting WADs.
-- `-d`, `--deflate` — Use DEFLATE compression when generating the IPK3.
-- `-e`, `--extract-only` — Skip copying pre-authored lumps and only extract WADs (for developers).
+- `-h`, `--help` — Show help message and exit
+- `-v`, `--verbose` — Show detailed extraction progress
+- `-p`, `--patch` — Update existing IPK3 without re-extracting WADs
+- `-d`, `--deflate` — Use DEFLATE compression (smaller files, slower)
+- `-e`, `--extract-only` — Skip pre-authored content (for developers)
 
-## Supported WADs
+**Example:** `wadfusion.exe -v -d` (verbose output with compression)
 
-WadFusion is not a general-purpose tool for merging DOOM WADs; it is for merging *official content only*—it was created out of a desire for a "complete" version of retail DOOM and DOOM II. Please do not ask if WadFusion will support any specific WAD. This includes any content from the 5th generation console ports. If you want to add your own content to a custom IPK3, either modify WadFusion's code yourself, or simply edit the IPK3 that WadFusion generates. Please try consulting the [ZDoom Wiki](https://zdoom.org/wiki/Main_Page) first before asking for help. If you've created an addon for WadFusion, feel free to share it with the community on the [Discussions](https://github.com/Owlet7/wadfusion/discussions/categories/show-and-tell) section.
+## Complete WAD Support List
 
-Here is the official list of WADs that WadFusion will recognize:
-- DOOM (original registered version of `doom.wad`, containing only episodes 1-3)
-- The Ultimate DOOM (retail version of `doom.wad` or `doomu.wad`, containing episodes 1-4)
-- DOOM II (`doom2.wad`)
-- Master Levels for DOOM II (the original 20 WAD files, or `masterlevels.wad` from the [KEX-based re-release](https://doomwiki.org/wiki/Doom_%2B_Doom_II))
-- Master Levels Rejects ([see below](#master-levels-rejects) for a full list of supported WADs)
-- Final DOOM (`tnt.wad` and `plutonia.wad`)
-- No Rest for the Living (`nerve.wad`)
-- SIGIL (`sigil.wad` and its optional music addon `sigil_shreds.wad`)
-- SIGIL II (`sigil2.wad` and optionally its MP3 soundtrack version `sigil2_mp3.wad`)
-- Legacy of Rust (`id1.wad` and `iddm1.wad` from the [KEX-based re-release](https://doomwiki.org/wiki/Doom_%2B_Doom_II))
-- [Xbox secret levels](https://classicdoom.com/xboxspec.htm) (`sewers.wad` and `betray.wad` from the [original Xbox port of DOOM](https://doomwiki.org/wiki/Xbox))
-- [Tech Gone Bad](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m8b) and [Phobos Mission Control](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m4b) (`e1m8b.wad` and `e1m4b.wad`, John Romero's map remakes)
-- Extras (`extras.wad` from the [Unity](https://doomwiki.org/wiki/Doom_Classic_Unity_port) or [KEX-based](https://doomwiki.org/wiki/Doom_%2B_Doom_II) re-releases)
+WadFusion supports a comprehensive range of DOOM content. You don't need all of these - WadFusion will work with whatever you have and can substitute missing dependencies when possible.
 
-If IWADs from the Unity or KEX-based re-releases are also included (must be named `doomunity.wad`, `doom2unity.wad`, `tntunity.wad`, `plutoniaunity.wad` or `doomkex.wad`, `doom2kex.wad`, `tntkex.wad`, `plutoniakex.wad`), WadFusion will extract the official widescreen assets from them. These versions can also be used as the main WADs for extraction, but do keep in mind that they are censored, and that WadFusion already comes with optional super-ultrawide assets.
+### 🎮 Official DOOM Releases
 
-The versions of `nerve.wad` in these re-releases include a unique intermission screen, but renaming them isn't necessary—WadFusion will recognize them, and they aren't censored the way the IWADs are.
+| WAD                | Description                          | Where to Get                                                                                         |
+| ------------------ | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `doom.wad`         | The Ultimate DOOM (Episodes 1-4)     | [Steam](https://store.steampowered.com/app/2280/) \| [GOG](https://www.gog.com/en/game/doom_doom_ii) |
+| `doom2.wad`        | DOOM II: Hell on Earth               | [Steam](https://store.steampowered.com/app/2300/) \| [GOG](https://www.gog.com/en/game/doom_doom_ii) |
+| `tnt.wad`          | TNT: Evilution (Final DOOM)          | [Steam](https://store.steampowered.com/app/2290/) \| [GOG](https://www.gog.com/en/game/final_doom)   |
+| `plutonia.wad`     | The Plutonia Experiment (Final DOOM) | [Steam](https://store.steampowered.com/app/2290/) \| [GOG](https://www.gog.com/en/game/final_doom)   |
+| `nerve.wad`        | No Rest for the Living               | Included with DOOM II Unity/KEX                                                                      |
+| `masterlevels.wad` | Master Levels for DOOM II            | [KEX re-release](https://store.steampowered.com/app/2280/) or individual PWADs                       |
 
-If `extras.wad` from the re-releases is included, WadFusion will extract the official "secret revealed" sound, and some status bar icons that can be used by the custom alternate fullscreen HUD. If the version from the KEX-based re-release is used, WadFusion will also extract Andrew Hulshult's "IDKFA" covers of the DOOM and DOOM II soundtracks, which can be toggled from the WadFusion options menu in GZDoom.
+### 🏆 Official Add-ons & Expansions
 
-None of the "official add-on" content from the Unity or KEX-based re-releases of DOOM and DOOM II is supported.
+| WAD                | Description                           | Where to Get                                               |
+| ------------------ | ------------------------------------- | ---------------------------------------------------------- |
+| `sigil.wad`        | SIGIL by John Romero                  | [Free download](https://romero.com/sigil)                  |
+| `sigil_shreds.wad` | SIGIL Buckethead soundtrack           | [Free download](https://romero.com/sigil)                  |
+| `sigil2.wad`       | SIGIL II by John Romero               | [Free download](https://romero.com/sigil)                  |
+| `sigil2_mp3.wad`   | SIGIL II THORR soundtrack             | [Free download](https://romero.com/sigil)                  |
+| `id1.wad`          | Legacy of Rust - Vulcan Abyss         | [KEX re-release](https://store.steampowered.com/app/2280/) |
+| `id1-res.wad`      | Legacy of Rust - Resources            | [KEX re-release](https://store.steampowered.com/app/2280/) |
+| `id24res.wad`      | Legacy of Rust - Additional Resources | [KEX re-release](https://store.steampowered.com/app/2280/) |
+| `iddm1.wad`        | id Deathmatch Pack #1                 | [KEX re-release](https://store.steampowered.com/app/2280/) |
+| `extras.wad`       | Unity/KEX Port Extras                 | Included with Unity/KEX releases                           |
 
-For SIGIL and SIGIL II, all the filenames for different releases of those WADs are also recognized; you shouldn't have to rename your original files. If `sigil_shreds.wad` is included, or if both versions of SIGIL II are included, WadFusion will extract both soundtracks, which can be toggled from the WadFusion options menu in GZDoom. The MP3 version of SIGIL II isn't supported on its own, the MIDI version must be included alongside it.
+### 🎪 Special Content
 
-[Tech Gone Bad](https://doomwiki.org/wiki/Tech_Gone_Bad) and [Phobos Mission Control](https://doomwiki.org/wiki/Phobos_Mission_Control) are levels that were made as a warm-up exercise for John Romero's cancelled game, Blackroom. If they're included, enabling them in the WadFusion options menu in GZDoom will replace E1M8 or E1M4 in the Knee-Deep in the Dead episode.
+| WAD          | Description                     | Where to Get                                                                                                                   |
+| ------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `sewers.wad` | Xbox DOOM secret level E1M10    | [idgames](https://www.doomworld.com/idgames/levels/doom/s-u/sewers2)                                                           |
+| `betray.wad` | Xbox DOOM II secret level MAP33 | [Forum post](https://www.doomworld.com/forum/topic/128173-known-lost-wads-of-our-history/?page=4&tab=comments#comment-2481490) |
+| `e1m4b.wad`  | Phobos Mission Control (Romero) | [idgames](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m4b)                                                       |
+| `e1m8b.wad`  | Tech Gone Bad (Romero)          | [idgames](https://www.doomworld.com/idgames/levels/doom/Ports/d-f/e1m8b)                                                       |
 
-## Master Levels Rejects
+### 🌟 Community & Commercial Add-ons
 
-The WadFusion options menu in GZDoom has an option to switch the Master Levels between the official 21 map order as arranged by Xaser, and the expanded 43 map order that incorporates the rejected and related bonus maps, and arranges them into sub-episode campaigns.
+| WAD              | Description                             | Where to Get                                                                 |
+| ---------------- | --------------------------------------- | ---------------------------------------------------------------------------- |
+| `doomzero.wad`   | DOOM Zero by Christopher Golden         | [Free download](https://www.doomworld.com/forum/topic/117899-doom-zero/)     |
+| `freedoom1.wad`  | Freedoom: Phase 1 (DOOM replacement)    | [Free download](https://freedoom.github.io/)                                 |
+| `freedoom2.wad`  | Freedoom: Phase 2 (DOOM II replacement) | [Free download](https://freedoom.github.io/)                                 |
+| `hell2pay.wad`   | Hell To Pay (commercial)                | Retail release - find your own copy                                          |
+| `perdgate.wad`   | Perdition's Gate (commercial)           | Retail release - find your own copy                                          |
+| `neis.wad`       | No End in Sight                         | [idgames](https://www.doomworld.com/idgames/levels/doom/Ports/megawads/neis) |
+| `tntr.wad`       | TNT: Revilution                         | [idgames](https://www.doomworld.com/idgames/levels/doom2/megawads/tntr)      |
+| `tnt2_beta6.wad` | TNT 2                                   | Community release                                                            |
+| `pl2.wad`        | Plutonia 2                              | [idgames](https://www.doomworld.com/idgames/levels/doom2/megawads/pl2)       |
+| `prcp.wad`       | Plutonia Revisited                      | Community release                                                            |
+| `jptr_v40.wad`   | The Lost Episodes of DOOM               | Retail release - find your own copy                                          |
+| `doom3do.wad`    | DOOM 3DO Soundtrack                     | [ModDB](https://www.moddb.com/games/doom/addons/doom-3do-music)              |
 
-For the Master Levels Rejects to be integrated, *all* of the following WADs must be included:
-- Master Levels for DOOM II (the original 20 WAD files, or `masterlevels.wad` from the [KEX-based re-release](https://doomwiki.org/wiki/Doom_%2B_Doom_II))
-- DOOM II (`doom2.wad`)
-- The Ultimate DOOM (`doom.wad`)
-- [The C.P.U.](https://www.doomworld.com/idgames/levels/doom2/a-c/cpu) (`cpu.wad`)
-- [Device One](https://www.doomworld.com/idgames/levels/doom2/d-f/device_1) (`device_1.wad`)
-- [The D.M.Z.](https://www.doomworld.com/idgames/levels/doom2/d-f/dmz) (`dmz.wad`)
-- [The Fury](https://www.doomworld.com/idgames/levels/doom2/a-c/cdk_fury) (`cdk_fury.wad`)
-- [The Enemy Inside](https://www.doomworld.com/idgames/levels/doom2/d-f/e_inside) (`e_inside.wad`)
-- [The Hive](https://www.doomworld.com/idgames/levels/doom2/g-i/hive) (`hive.wad`)
-- [Doom2 Map14 Homage](https://www.doomworld.com/idgames/levels/doom2/s-u/twm01) (`twm01.wad`)
-- [Mines of Titan](https://www.doomworld.com/idgames/levels/doom2/m-o/mines2) (`mines.wad`)
-- [The Titan Anomaly](https://www.doomworld.com/idgames/levels/doom2/a-c/anomaly) (`anomaly.wad`)
-- [The Farside of Titan](https://www.doomworld.com/idgames/levels/doom2/d-f/farside) (`farside.wad`)
-- [Trouble on Titan](https://www.doomworld.com/idgames/levels/doom2/s-u/trouble) (`trouble.wad`)
-- [Dante's Gate](https://www.doomworld.com/idgames/levels/doom2/d-f/dante25) (`dante25.wad`)
-- [Crossing Acheron](https://www.doomworld.com/idgames/levels/doom2/a-c/achron22) (`achron22.wad`)
-- [Caball](https://doomshack.org/uploads/caball.zip) (`caball.wad`)
-- [Ultimate Doom The Way id Did](https://www.doomworld.com/idgames/levels/doom/s-u/udtwid) (`udtwid.wad`)
+### 🔧 Unity/KEX Port Assets (Optional)
 
-**Note: [Works of the Masters](https://jp.itch.io/deluxe-master-levels) is not supported by WadFusion! Do not use the WADs included with it!**
+| WAD                 | Description                      | Notes                               |
+| ------------------- | -------------------------------- | ----------------------------------- |
+| `doomunity.wad`     | DOOM Unity widescreen assets     | Rename doom.wad from Unity port     |
+| `doom2unity.wad`    | DOOM II Unity widescreen assets  | Rename doom2.wad from Unity port    |
+| `tntunity.wad`      | TNT Unity widescreen assets      | Rename tnt.wad from Unity port      |
+| `plutoniaunity.wad` | Plutonia Unity widescreen assets | Rename plutonia.wad from Unity port |
+| `doomkex.wad`       | DOOM KEX widescreen assets       | Rename doom.wad from KEX port       |
+| `doom2kex.wad`      | DOOM II KEX widescreen assets    | Rename doom2.wad from KEX port      |
+| `tntkex.wad`        | TNT KEX widescreen assets        | Rename tnt.wad from KEX port        |
+| `plutoniakex.wad`   | Plutonia KEX widescreen assets   | Rename plutonia.wad from KEX port   |
 
-## Absolute Beginner's Guide
+### 📁 Setting Up Your WADs
 
-1. Download WadFusion for [Windows](https://github.com/Owlet7/wadfusion/releases/latest/download/wadfusion_win.zip) or [macOS and GNU/Linux](https://github.com/Owlet7/wadfusion/releases/latest/download/wadfusion_py.zip), and extract it to a folder.
-2. Find the folder(s) where GOG / Steam installed your game(s).
-   - For Steam on Windows, this will be something like\
-   `C:\Program Files (x86)\Steam\steamapps\common\Ultimate Doom\base`
-3. Copy any files you find with a `.WAD` extension to the `source_wads` subfolder where you extracted WadFusion.
-4. On Windows, launch `wadfusion.exe`. On macOS or GNU/Linux, run the `wadfusion.py` Python 3 script.
-5. A terminal window will show which episodes can be extracted. Press Y and then Enter to proceed.
-6. The terminal window will show progress as it generates the IPK3. When it finishes, press Enter to close the window. You should now have a file in the WadFusion folder called `doom_fusion.ipk3`.
-7. Download [GZDoom](https://zdoom.org/downloads) and extract it to a folder.
-8. Copy the `doom_fusion.ipk3` and `doom_fusion_widescreen_gfx.pk3` files to GZDoom's folder.
-9. Launch GZDoom and play!
+1. **Create a `source_wads` folder** in the same directory as `wadfusion.py`
+2. **Copy your WAD files** into this folder
+3. **Run WadFusion** - it will automatically detect which WADs you have
 
-## Acknowledgements
+**File Naming:** WadFusion is flexible with file names. For example, these all work:
+- `doom.wad`, `DOOM.WAD`, `doom1.wad`
+- `doom2.wad`, `DOOM2.WAD` 
+- `tnt.wad`, `TNT.WAD`
+- `plutonia.wad`, `PLUTONIA.WAD`, `plut.wad`
 
-[WadSmoosh](https://jp.itch.io/wadsmoosh) was originally developed by JP LeBreton. WadFusion is based on its [source code](https://heptapod.host/jp-lebreton/wadsmoosh).
+### 🔄 Dependencies & Substitutions
 
-WadFusion uses the [Omgifol Python library](https://github.com/devinacker/omgifol) by Fredrik Johansson and Devin Acker.
+WadFusion automatically handles dependencies:
+- **Freedoom as DOOM substitute**: `freedoom1.wad` can replace `doom.wad`
+- **Freedoom as DOOM II substitute**: `freedoom2.wad` can replace `doom2.wad`
+- **Unity/KEX assets**: Will automatically use widescreen graphics if available
+- **Multiple music packs**: SIGIL and SIGIL II support multiple soundtrack variants
 
-### Integrated Extras Acknowledgements
+## Advanced Usage
 
-**Wadfusion-Xtras** - An addon mod that adds console maps and Doom 64 for Doom 2 content. All rights go to their respective authors.
+### Command Line Options
 
-**WadFusion-Unofficial-Xtras** - An addon for unofficial campaigns including The Lost Episodes of Doom, Perditions Gate, Hell to Pay, Freedoom, TNT Revolution, Plutonia 2, and Doom Zero. All rights go to their respective authors.
+```bash
+python wadfusion.py [options]
+```
 
-Both extras packages have been integrated into this version of WadFusion to provide enhanced gameplay experiences. For source attribution and detailed credits, see the respective `Credits/` folders in the extras directories.
+| Option               | Description                                     |
+| -------------------- | ----------------------------------------------- |
+| `-v, --verbose`      | Enable detailed output and progress information |
+| `-p, --patch`        | Update existing IPK3 without re-extracting WADs |
+| `-d, --deflate`      | Use DEFLATE compression instead of STORED       |
+| `-e, --extract-only` | Extract WADs only, skip pre-authored content    |
+
+### Special Features
+
+- **Master Levels**: Automatically organizes and numbers all 20+ Master Levels
+- **Map Prefixes**: Prevents conflicts by prefixing maps (e.g., `TN_MAP01.wad`, `PL_MAP01.wad`)
+- **Version Detection**: Automatically detects Unity, KEX, and retail versions
+- **Multi-format Music**: Supports OGG, MP3, and MIDI soundtrack variants
+- **Widescreen Support**: Extracts Unity/KEX widescreen graphics when available
+
+### Troubleshooting
+
+**"WAD not found" errors:**
+- Check that WAD files are in the `source_wads` folder
+- Verify file names match supported patterns
+- Use `-v` flag to see exactly which files WadFusion is looking for
+
+**Missing dependencies:**
+- WadFusion will tell you what's required and suggest alternatives
+- Freedoom WADs can substitute for commercial IWADs in most cases
+
+**Large file size:**
+- Use `-d` flag for DEFLATE compression to reduce IPK3 size
+- Consider which WADs you actually need - you don't need everything
+
+## Master Levels & Special Content
+
+### Master Levels Expanded Collection
+
+WadFusion includes comprehensive Master Levels support with two modes:
+
+**Standard Mode (21 maps)**: The official Master Levels as arranged by Xaser
+**Expanded Mode (43 maps)**: Includes rejected and related bonus maps organized into sub-episodes
+
+### Master Levels "Rejects" Collection
+
+For the complete Master Levels experience, include these additional WADs:
+
+| WAD            | Title                        | Where to Get                                                           |
+| -------------- | ---------------------------- | ---------------------------------------------------------------------- |
+| `cpu.wad`      | The C.P.U.                   | [idgames](https://www.doomworld.com/idgames/levels/doom2/a-c/cpu)      |
+| `device_1.wad` | Device One                   | [idgames](https://www.doomworld.com/idgames/levels/doom2/d-f/device_1) |
+| `dmz.wad`      | The D.M.Z.                   | [idgames](https://www.doomworld.com/idgames/levels/doom2/d-f/dmz)      |
+| `cdk_fury.wad` | The Fury                     | [idgames](https://www.doomworld.com/idgames/levels/doom2/a-c/cdk_fury) |
+| `e_inside.wad` | The Enemy Inside             | [idgames](https://www.doomworld.com/idgames/levels/doom2/d-f/e_inside) |
+| `hive.wad`     | The Hive                     | [idgames](https://www.doomworld.com/idgames/levels/doom2/g-i/hive)     |
+| `twm01.wad`    | Doom2 Map14 Homage           | [idgames](https://www.doomworld.com/idgames/levels/doom2/s-u/twm01)    |
+| `mines.wad`    | Mines of Titan               | [idgames](https://www.doomworld.com/idgames/levels/doom2/m-o/mines2)   |
+| `anomaly.wad`  | The Titan Anomaly            | [idgames](https://www.doomworld.com/idgames/levels/doom2/a-c/anomaly)  |
+| `farside.wad`  | The Farside of Titan         | [idgames](https://www.doomworld.com/idgames/levels/doom2/d-f/farside)  |
+| `trouble.wad`  | Trouble on Titan             | [idgames](https://www.doomworld.com/idgames/levels/doom2/s-u/trouble)  |
+| `dante25.wad`  | Dante's Gate                 | [idgames](https://www.doomworld.com/idgames/levels/doom2/d-f/dante25)  |
+| `achron22.wad` | Crossing Acheron             | [idgames](https://www.doomworld.com/idgames/levels/doom2/a-c/achron22) |
+| `caball.wad`   | Caball                       | [doomshack.org](https://doomshack.org/uploads/caball.zip)              |
+| `udtwid.wad`   | Ultimate Doom The Way id Did | [idgames](https://www.doomworld.com/idgames/levels/doom/s-u/udtwid)    |
+
+⚠️ **Note**: [Works of the Masters](https://jp.itch.io/deluxe-master-levels) is NOT supported! Do not use WADs from that collection.
+
+### Special Feature Details
+
+**Unity/KEX Enhanced Assets:**
+- Widescreen graphics automatically extracted when Unity/KEX WADs are present
+- IDKFA soundtrack variants by Andrew Hulshult (toggleable in-game)
+- Enhanced intermission screens and status bar icons
+
+**SIGIL & SIGIL II Music:**
+- Multiple soundtrack options (MIDI, Buckethead, THORR)
+- Automatic detection of different SIGIL releases
+- Runtime switching via in-game options menu
+
+**John Romero's Bonus Maps:**
+- Tech Gone Bad (`e1m8b.wad`) - Replaces E1M8
+- Phobos Mission Control (`e1m4b.wad`) - Replaces E1M4
+- Toggleable via in-game options menu
+
+## Development & Contribution
+
+WadFusion is designed to be extensible and welcomes community contributions.
+
+### Key Architecture Files
+- `wadfusion.py` - Main application logic and command-line interface
+- `wadfusion_data.py` - WAD definitions, lump lists, and extraction rules
+- `data/` - Lump extraction lists organized by WAD and content type
+- `res/` - Pre-authored content (mapinfo, textures, scripts)
+- `.github/copilot-instructions.md` - Detailed development guidelines
+
+### Adding New WAD Support
+1. Create lump lists in `data/` directory
+2. Update `WADS` and `REPORT_WADS` lists in `wadfusion_data.py`
+3. Define extraction rules in `WAD_LUMP_LISTS`
+4. Add map prefixes if extracting levels
+5. Update validation logic and episode detection
+
+### Contributing
+- Fork the repository and create feature branches
+- Test with various WAD combinations before submitting PRs
+- Update documentation for any new WAD support
+- Follow existing code patterns and naming conventions
+
+For detailed development instructions, see `.github/copilot-instructions.md`.
+
+## Credits & License
+
+**Original Projects:**
+- **WadSmoosh** by JP LeBreton - Original DOOM WAD merger
+- **WadSmoosh-Plus** by community contributors - Extended WAD support
+
+**This Version:**
+- Integrates the best features of both projects
+- Adds comprehensive documentation and user experience improvements
+- Maintains backward compatibility while significantly expanding capabilities
+
+**Special Thanks:**
+- JP LeBreton for creating the original WadSmoosh
+- The wadsmoosh-plus community for expanding WAD support
+- Fredrik Johansson and Devin Acker for the Omgifol library
+- The DOOM community for preserving and enhancing these classic games
+- All WAD authors and content creators who made these expansions possible
+
+**License:** GPL v2 or later. See `LICENSE` for full details.
+
+**Community:** Join the discussion on [GitHub Discussions](https://github.com/Owlet7/wadfusion/discussions) to share your experiences, ask questions, or showcase your DOOM collections!
