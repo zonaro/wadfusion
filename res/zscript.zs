@@ -37,3 +37,22 @@ const WF_VERSION = "1.6.0-dev";
 #include "zscript/wf_story.zs"
 #include "zscript/wf_map_fixes.zs"
 #include "zscript/wf_defaults.zs"
+
+// Wadfusion-Xtras ZScript includes
+#include "extras/xtras/Zscript/LevelScripts/Dcx_Levelpostprocessors.zsc"
+#include "extras/xtras/Zscript/LevelScripts/Dcx_EventHandlers.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_BaseDoom_Actors.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_D64D2_Actors.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_KickAttack_Actors.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_LegacyOfRust_Actors.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_Extra_Actors.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_Weapons.zsc"
+#include "extras/xtras/Zscript/Actors/Dcx_Items.zsc"
+#include "extras/xtras/Zscript/UI/Dcx_sbar.zsc"
+#include "extras/xtras/Zscript/UI/dcx_Sbar_alt.zsc"
+
+// WadFusion-Unoffical-Xtras ZScript includes
+#include "extras/unoffical/Zscript/OE_Levelpostprocessors.zsc"
+#include "extras/unoffical/Zscript/OE_EventHandlers.zsc"
+#include "extras/unoffical/Zscript/OE_Actors.zsc"
+#include "extras/unoffical/Zscript/OE_Weapons.zsc"

@@ -24,11 +24,81 @@ include mapinfo/maps_sigil2.txt
 include mapinfo/maps_id1.txt
 include mapinfo/maps_iddm1.txt
 
+// Wadfusion-Xtras includes
+include extras/xtras/mapinfo/Episodes_X.txt
+include extras/xtras/mapinfo/Doom1_Levels_X.txt
+include extras/xtras/mapinfo/Blackroom_levels_X.txt
+include extras/xtras/mapinfo/Sigil_levels_X.txt
+include extras/xtras/mapinfo/Sigil2_levels_X.txt
+include extras/xtras/mapinfo/Jaguar_Levels_X.txt
+include extras/xtras/mapinfo/Doom2_levels_X.txt
+include extras/xtras/mapinfo/Console_Doom_Levels_X.txt
+include extras/xtras/mapinfo/Xbox_levels_X.txt
+include extras/xtras/mapinfo/Master_levels_X.txt
+include extras/xtras/mapinfo/Master_levels_christen_X.txt
+include extras/xtras/mapinfo/Master_levels_flynn_X.txt
+include extras/xtras/mapinfo/Master_levels_anderson_X.txt
+include extras/xtras/mapinfo/Master_levels_kvernmo_X.txt
+include extras/xtras/mapinfo/Nerve_levels_X.txt
+include extras/xtras/mapinfo/Tnt_levels_X.txt
+include extras/xtras/mapinfo/Id1_levels_X.txt
+include extras/xtras/mapinfo/Plutonia_levels_X.txt
+include extras/xtras/mapinfo/Absolution_X.txt
+include extras/xtras/mapinfo/GbaDeathMatch_Levels_X.txt
+include extras/xtras/mapinfo/Iddm1_levels_X.txt
+include extras/xtras/mapinfo/Intro_Outro_Inter_X.txt
+include extras/xtras/mapinfo/Cluster_Defs_X.txt
+include extras/xtras/mapinfo/Bonus_Misc_Maps_X.txt
+
+// WadFusion-Unoffical-Xtras includes
+include extras/unoffical/mapinfo/EvilUnleashed_Levels_X.txt
+include extras/unoffical/mapinfo/FreedoomPhase1_Levels_X.txt
+include extras/unoffical/mapinfo/FreedoomPhase2_Levels_X.txt
+include extras/unoffical/mapinfo/FreedoomDM_Levels_X.txt
+include extras/unoffical/mapinfo/TheLostEpisodes_Levels_X.txt
+include extras/unoffical/mapinfo/PerditionsGate_Levels_X.txt
+include extras/unoffical/mapinfo/HellToPay_Levels_X.txt
+include extras/unoffical/mapinfo/Plutonia2_Levels_X.txt
+include extras/unoffical/mapinfo/TNTRevilution_Levels_X.txt
+include extras/unoffical/mapinfo/DoomZero_Levels_X.txt
+include extras/unoffical/mapinfo/MapsOfChaos_S_Levels_X.txt
+include extras/unoffical/mapinfo/MapsOfChaos_H_Levels_X.txt
+include extras/unoffical/mapinfo/MapsOfChaos_O_Levels_X.txt
+include extras/unoffical/mapinfo/Episodes_Expanded_X.txt
+include extras/unoffical/mapinfo/Cluster_Defx_UOX.txt
+
 GameInfo
 {
 	FinalePage = "CREDIT", "VICTORY2", "ENDPIC"
 	QuitSound = "menu/quitfusion"
 	DefaultEndSequence = "Fusion_GotoTitle"
+	
+	// Wadfusion-Xtras extensions
+	PlayerClasses = "DCX_Player"
+	AddEventHandlers = "DCX_EventHandler", "DCX_BloodHandler", "DCX_PerMapReplacementHandler", "DCX_MusicHandler" //, "DCX_NightmareMonsterHandler"
+    infopage = "CREDIT"
+    drawreadthis = true
+    StatusBarClass = "DCX_Statusbar"
+}
+
+// Wadfusion-Xtras DoomEdNums
+DoomEdNums
+{
+	3143 = ID24Fuel
+	3144 = ID24FuelTank
+	3145 = ID24Incinerator
+	3146 = ID24CalamityBlade
+	
+	255 = DCX_DoubleBladedChainsaw
+	256 = DCX_HeavyPlasmaGun
+	666 = DCX_Unmaker
+	667 = DCX_Demonkey1
+	668 = DCX_Demonkey2
+	669 = DCX_Demonkey3
+	685 = DCX_NightmareImp
+	697 = DCX_NightmareSpectre
+	686 = DCX_NightmareCacodemon
+	687 = DCX_DualCyberdemon
 	AddEventHandlers = "WadFusionHandler", "WadFusionStaticHandler"
 	StatusBarClass = "WadFusionStatusBar"
 }

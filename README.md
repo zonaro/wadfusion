@@ -8,6 +8,29 @@ If you just bought these games from [GOG](https://www.gog.com/en/game/doom_doom_
 
 ### Note: WadFusion requires GZDoom v4.14.1 or newer, it will not work with other engines.
 
+## Integrated Extras
+
+This version of WadFusion includes integrated extras from the community:
+
+### Wadfusion-Xtras
+An addon that adds console maps and the entirety of Doom 64 for Doom 2 (with permission). This integration includes:
+- Enhanced graphics and textures
+- Additional maps and episodes  
+- Doom 64-style monsters and weapons
+- Custom UI elements and status bars
+
+### WadFusion-Unofficial-Xtras  
+An addon for unofficial campaigns including:
+- The Lost Episodes of Doom
+- Perditions Gate
+- Hell to Pay
+- Freedoom Phase 1 and 2
+- TNT Revolution
+- Plutonia 2
+- Doom Zero
+
+All extras are located in the `res/extras/` directory and are automatically integrated into the build process.
+
 ## Usage
 
 Simply copy all of your WADs into the `source_wads` subfolder, then run WadFusion. A log will appear showing progress and any errors that arise. A new file called `doom_fusion.ipk3` will be created, with all the game content in it. It should be selectable in GZDoom as "DOOM Fusion".
@@ -100,3 +123,11 @@ For the Master Levels Rejects to be integrated, *all* of the following WADs must
 [WadSmoosh](https://jp.itch.io/wadsmoosh) was originally developed by JP LeBreton. WadFusion is based on its [source code](https://heptapod.host/jp-lebreton/wadsmoosh).
 
 WadFusion uses the [Omgifol Python library](https://github.com/devinacker/omgifol) by Fredrik Johansson and Devin Acker.
+
+### Integrated Extras Acknowledgements
+
+**Wadfusion-Xtras** - An addon mod that adds console maps and Doom 64 for Doom 2 content. All rights go to their respective authors.
+
+**WadFusion-Unofficial-Xtras** - An addon for unofficial campaigns including The Lost Episodes of Doom, Perditions Gate, Hell to Pay, Freedoom, TNT Revolution, Plutonia 2, and Doom Zero. All rights go to their respective authors.
+
+Both extras packages have been integrated into this version of WadFusion to provide enhanced gameplay experiences. For source attribution and detailed credits, see the respective `Credits/` folders in the extras directories.
